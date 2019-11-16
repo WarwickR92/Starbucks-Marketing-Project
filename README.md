@@ -1,4 +1,4 @@
-# Starbucks Capstone Project
+# Starbucks Marketing Project
 
 This project has been created in an attempt to determine which of the Starbucks demographic groups respond best to which types of offers. The bussiness case for this is simple, it will enable Starbucks to target different dempgraphics with unique and impactful offers. It will also mean that Starbucks is not loosing money on consumers that would have brought items regardless of the offer. This should ultimatly increase both increase sales and profits.
 
