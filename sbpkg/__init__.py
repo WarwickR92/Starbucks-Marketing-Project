@@ -400,6 +400,6 @@ def predict_demographic(profile_data, demographic_model='kmeans_demographic_mode
     
     # add the pedictions for the clustering onto the original dataset
     updated_dataframe = profile_data
-    updated_dataframe['cluster'] = predictions
+    updated_dataframe['demographic'] = predictions
     
     return updated_dataframe
