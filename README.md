@@ -47,6 +47,8 @@ All of the datasources above will be explored in more depth in the first noteboo
 
 The results above show a lot of promise and many more insights could gained from them already. I was able to successfully predict the spend with some success although this could be improved upon. I was also able to judge marketing performance on each demographic using a baseline created through the prediction modelling. 
 
+To solve the problem of judging marketing performance, I processed the Starbucks membership data making some assumptions in order to create a useful modelling input. Next, I modelled the different demographics that use the Starbucks membership in order to group together users with similar behaviours using the K-means clustering. Finally, I created a regression model for each demographic using the XGBoost method to predict spend and quantify a baseline that could be use to determine marketing performance.
+
 However, there are also many improvements that could be made to the results if more time and data were given to the project. In this short section I will go through a few of the improvements that could be made:
 
 - One of the biggest changes could be an additional model that calculates the chance of an actual transaction taking place and being influenced. This was originally in my scope of work for this project as currently it's not a true predict as currently I'm relying on the fact that I know what transactions will be influenced to predict spend. This third model would tie everything together but I found that in order to create a decent model we would potentially need much more training data than just one month of sales.
