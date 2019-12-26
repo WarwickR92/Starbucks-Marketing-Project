@@ -403,3 +403,40 @@ def predict_demographic(profile_data, demographic_model='kmeans_demographic_mode
     updated_dataframe['demographic'] = predictions
     
     return updated_dataframe
+
+# create a function to use each of the above models to predict spend
+def predict_spend(input_data, model_demographic):
+    """
+    this function predicts the spend of users based on the model made for there demographic
+    """    
+    # load in the model needed to predict spend on the analysis
+    demo_model = joblib.load(f"xgboost_price_model_{model_demographic}.pkl")
+    
+    # keep only the demographic data related to the model to be used in this section
+    input_data = input_data[input_data['demographic'] == model_demographic]
+
+    # keep only the columns needed
+    input_data = input_data.drop(columns=['transaction_time','person',
+                                          'spend','demographic'])
+    
+    # calculate the prediction based on the input date
+    prediction = demo_model.predict(input_data)
+    
+    # attach the prediction to the original filtered df
+    input_data['prediction'] = prediction
+    
+    return input_data
+
+def create_dummy_days(data):
+    """
+    this module creates dummies depending on the day of the week
+    (this is useful as users behaviour will be different on a weekday vs weekend)
+    """
+    # add dummies for the days of the week 
+    day_of_week = pd.DataFrame(list(data['transaction_time']))
+    for n in [1,2,3,4,5,6,7]:
+        day_of_week = day_of_week.replace((n+7), n).replace((n+7*2), n).replace((n+7*3), n).replace((n+7*4), n)   
+    day_of_week = pd.DataFrame([str(x) for x in day_of_week.iloc[:,0]])
+    input_data_test = pd.concat([data, pd.get_dummies(day_of_week)], axis=1, join='inner')
+    
+    return input_data_test
